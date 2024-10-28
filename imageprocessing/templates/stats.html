@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compression Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-6 py-10">
+        <h1 class="text-4xl font-bold text-center text-gray-800 mb-8">Compression Results</h1>
+
+        <div class="flex justify-center mb-6">
+            <div class="bg-white shadow-md rounded-lg p-4 mr-4">
+                <h2 class="text-2xl font-semibold text-gray-800 text-center">Original Image</h2>
+                <img src="{{ url_for('static', filename='uploads/' + original_image) }}" alt="Original Image" class="mx-auto mt-4 rounded-lg shadow-lg" style="max-width: 320px;">
+            </div>
+
+            <div class="bg-white shadow-md rounded-lg p-4">
+                <h2 class="text-2xl font-semibold text-gray-800 text-center">Compressed Image</h2>
+                <img src="{{ url_for('static', filename='uploads/' + compressed_image) }}" alt="Compressed Image" class="mx-auto mt-4 rounded-lg shadow-lg" style="max-width: 320px;">
+            </div>
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6 w-full md:w-1/2 mx-auto">
+            <h3 class="text-xl font-semibold text-gray-800">Statistics</h3>
+            <table class="min-w-full mt-4">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="py-2 text-left text-gray-700">Metric</th>
+                        <th class="py-2 text-left text-gray-700">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border-b border-gray-300 py-2">Original Size</td>
+                        <td class="border-b border-gray-300 py-2">{{ stats['original_size'] }} bytes</td>
+                    </tr>
+                    <tr>
+                        <td class="border-b border-gray-300 py-2">Compressed Size</td>
+                        <td class="border-b border-gray-300 py-2">{{ stats['compressed_size'] }} bytes</td>
+                    </tr>
+                    <tr>
+                        <td class="border-b border-gray-300 py-2">Original Dimensions</td>
+                        <td class="border-b border-gray-300 py-2">{{ stats['original_dimensions'][0] }} x {{ stats['original_dimensions'][1] }}</td>
+                    </tr>
+                    <tr>
+                        <td class="border-b border-gray-300 py-2">Compressed Dimensions</td>
+                        <td class="border-b border-gray-300 py-2">{{ stats['compressed_dimensions'][0] }} x {{ stats['compressed_dimensions'][1] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6 w-full md:w-1/2 mx-auto">
+            <h3 class="text-xl font-semibold text-gray-800">Comparison</h3>
+            <p class="mt-4 text-gray-700">Perbandingan ukuran file dan kualitas visual citra:</p>
+            <p class="mt-2"><strong class="text-gray-800">Citra Asli</strong>: Memiliki ukuran file yang lebih besar dengan kualitas visual yang lebih tinggi.</p>
+            <p class="mt-2"><strong class="text-gray-800">Citra Terkompresi</strong>: Memiliki ukuran file yang lebih kecil, tetapi mungkin ada sedikit penurunan kualitas visual.</p>
+        </div>
+
+        <div class="text-center">
+            <a href="/" class="inline-block mt-6 px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-md transition duration-200">Upload Another Image</a>
+        </div>
+    </div>
+</body>
+</html>
